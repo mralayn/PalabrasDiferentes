@@ -2,10 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class MainApp {
-
+    static int palabrasTotales;
     public static void main(String args[]) {
+        palabrasTotales =0;
 
         if (args.length == 0){
             System.out.println("falta el nombre del archivo");
@@ -29,12 +31,15 @@ public class MainApp {
         while (true) {
             try {
                 if (!((textLine = in.readLine())   != null))
+
                     break;
             } catch (IOException e) {
                 System.out.println("error al leer el archivo");
                 System.exit(3);
             }
             contador++;
+            StringTokenizer st = new StringTokenizer(textLine);
+            palabrasTotales = palabrasTotales + st.countTokens();
 
         }
 
@@ -44,6 +49,8 @@ public class MainApp {
             e.printStackTrace();
         }
         System.out.println("el archivo " + fileName + " tiene " + contador + " lineas ");
+        System.out.println("");
+        System.out.println("el archivo tiene "+palabrasTotales+" palabras");
 
 
     }
